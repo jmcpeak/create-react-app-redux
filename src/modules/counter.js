@@ -28,55 +28,6 @@ const
         name: name
     });
 
-export default (state = initialState, action) => {
-
-    switch (action.type) {
-        case INCREMENT_REQUESTED:
-            return {
-                ...state,
-                isIncrementing: true
-            };
-
-        case INCREMENT:
-            return {
-                ...state,
-                count: state.count + 1,
-                isIncrementing: !state.isIncrementing,
-                clickHistory: addClickHistory(state, action.name)
-            };
-
-        case DECREMENT_REQUESTED:
-            return {
-                ...state,
-                isDecrementing: true
-            };
-
-        case DECREMENT:
-            return {
-                ...state,
-                count: state.count - 1,
-                isDecrementing: !state.isDecrementing,
-                clickHistory: addClickHistory(state, action.name)
-            };
-
-        case ABOUT:
-            return {
-                ...state,
-                clickHistory: addClickHistory(state, action.name)
-            };
-
-        case RESET:
-            return {
-                ...state,
-                count: state.count = 0,
-                clickHistory: addClickHistory(state, action.name)
-            };
-
-        default:
-            return state
-    }
-}
-
 export const boundIncrement = () => dispatch => {
     dispatch({
         type: INCREMENT_REQUESTED
@@ -135,4 +86,53 @@ export const boundReset = () => dispatch => {
         type: RESET,
         name: 'Reset'
     });
+};
+
+export default (state = initialState, action) => {
+
+    switch (action.type) {
+        case INCREMENT_REQUESTED:
+            return {
+                ...state,
+                isIncrementing: true
+            };
+
+        case INCREMENT:
+            return {
+                ...state,
+                count: state.count + 1,
+                isIncrementing: !state.isIncrementing,
+                clickHistory: addClickHistory(state, action.name)
+            };
+
+        case DECREMENT_REQUESTED:
+            return {
+                ...state,
+                isDecrementing: true
+            };
+
+        case DECREMENT:
+            return {
+                ...state,
+                count: state.count - 1,
+                isDecrementing: !state.isDecrementing,
+                clickHistory: addClickHistory(state, action.name)
+            };
+
+        case ABOUT:
+            return {
+                ...state,
+                clickHistory: addClickHistory(state, action.name)
+            };
+
+        case RESET:
+            return {
+                ...state,
+                count: state.count = 0,
+                clickHistory: addClickHistory(state, action.name)
+            };
+
+        default:
+            return state
+    }
 };
