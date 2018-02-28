@@ -23,10 +23,10 @@ const
         isResetting: false,
         clickHistory: []
     },
-    addClickHistory = (state, name) => state.clickHistory.concat({
+    addClickHistory = (state, name) => state.clickHistory = [...state.clickHistory, {
         dateTime: new Date().toLocaleTimeString('en-US', options),
         name: name
-    });
+    }];
 
 export const boundIncrement = () => dispatch => {
     dispatch({
