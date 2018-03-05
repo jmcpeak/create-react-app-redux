@@ -14,7 +14,7 @@ const
         year: 'numeric',
         month: 'long',
         day: 'numeric',
-        timeZone: 'EST'
+        timeZone: 'America/New_York'
     },
     initialState = {
         count: 0,
@@ -23,10 +23,10 @@ const
         isResetting: false,
         clickHistory: []
     },
-    addClickHistory = (state, name) => state.clickHistory = [...state.clickHistory, {
+    addClickHistory = (state, name) => state.clickHistory.concat({
         dateTime: new Date().toLocaleTimeString('en-US', options),
         name: name
-    }];
+    });
 
 export const boundIncrement = () => dispatch => {
     dispatch({
