@@ -23,10 +23,10 @@ const
         isResetting: false,
         clickHistory: []
     },
-    addClickHistory = (state, name) => state.clickHistory.concat({
+    addClickHistory = (clickHistory, name) => [...clickHistory, {
         dateTime: new Date().toLocaleTimeString('en-US', options),
         name: name
-    });
+    }];
 
 export const boundIncrement = () => dispatch => {
     dispatch({
@@ -102,7 +102,7 @@ export default (state = initialState, action) => {
                 ...state,
                 count: state.count + 1,
                 isIncrementing: !state.isIncrementing,
-                clickHistory: addClickHistory(state, action.name)
+                clickHistory: addClickHistory(state.clickHistory, action.name)
             };
 
         case DECREMENT_REQUESTED:
@@ -116,20 +116,20 @@ export default (state = initialState, action) => {
                 ...state,
                 count: state.count - 1,
                 isDecrementing: !state.isDecrementing,
-                clickHistory: addClickHistory(state, action.name)
+                clickHistory: addClickHistory(state.clickHistory, action.name)
             };
 
         case ABOUT:
             return {
                 ...state,
-                clickHistory: addClickHistory(state, action.name)
+                clickHistory: addClickHistory(state.clickHistory, action.name)
             };
 
         case RESET:
             return {
                 ...state,
                 count: state.count = 0,
-                clickHistory: addClickHistory(state, action.name)
+                clickHistory: addClickHistory(state.clickHistory, action.name)
             };
 
         default:
