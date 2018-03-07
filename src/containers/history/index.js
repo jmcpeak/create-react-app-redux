@@ -2,8 +2,8 @@ import React from 'react'
 import {connect} from "react-redux";
 
 const History = props => (
-    props.clickHistory.length ?
-        <div><h1>History</h1>
+    <div><h1>History</h1>
+        {props.clickHistory.length > 0 && (
             <table>
                 <tr>
                     <th>Click on</th>
@@ -15,8 +15,8 @@ const History = props => (
                         <td>{entry.dateTime}</td>
                     </tr>))}
             </table>
-        </div> :
-        <div><h1>History</h1></div>
+        )}
+    </div>
 );
 
 const mapStateToProps = state => ({
